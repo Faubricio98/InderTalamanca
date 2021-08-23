@@ -9,7 +9,7 @@
     <link rel="icon" href="public/img/logo.png">
 
     <link rel="stylesheet" href="public/css/styles.css">
-    <link rel="stylesheet" type="text/css" href="public/css/uicons-bold-rounded/css/uicons-bold-rounded.css"/>
+    <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/uicons-bold-rounded/css/uicons-bold-rounded.css'>
     <script type="text/javascript" src="public/js/jquery-3.2.1.js"></script>
     <script type="text/javascript" src="public/js/script.js"></script>
     <script type="text/javascript" src="public/js/scriptAdministrador.js"></script>
@@ -49,7 +49,7 @@
 
         .overlay-content {
             position: relative;
-            top: 8%;
+            top: 15%;
             width: 100%;
             text-align: center;
             margin-top: 20px;
@@ -93,18 +93,25 @@
         <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
         <div class="overlay-content">
             <a href="?controlador=Usuario&accion=mostrar">Inicio</a>
+            <a href="?controlador=Oficio&accion=mostrar">Oficios</a>
+            <a href="?controlador=Proyecto&accion=mostrar">Proyectos</a>
+            <!--
             <a href="?controlador=Oficio&accion=mostrarRegistro">Registrar oficios</a>
             <a href="?controlador=Oficio&accion=listar">Lista de oficios</a>
             <a href="?controlador=Proyecto&accion=mostrarRegistro">Registrar proyectos</a>
             <a href="?controlador=Proyecto&accion=mostrarActualizar">Actualizar proyectos</a>
             <a href="?controlador=Proyecto&accion=mostrarListar">Lista de proyectos</a>
+            -->
             <?php
                 if (isset($_SESSION['adminUserSession'])) {
                     if($_SESSION['adminUserSession'] == 1){
             ?>
+                        <a href="?controlador=Administrador&accion=mostrar">Usuarios</a>
+                        <!--
                         <a href="?controlador=Administrador&accion=mostrarRegistrar">Registrar usuario</a>
                         <a href="?controlador=Administrador&accion=mostrarEditar">Editar usuario</a>
                         <a href="?controlador=Administrador&accion=mostrarEliminar">Eliminar usuario</a>
+                        -->
             <?php
                     }
                 }

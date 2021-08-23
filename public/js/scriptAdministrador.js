@@ -164,7 +164,7 @@ function editarUsuario() {
             }, //antes de enviar   
             success: function (response) {
                 document.getElementById('respuesta').innerHTML = '';
-                alert(response);
+                //alert(response);
                 if (response == -1) {
                     //error al editar
                     Swal.fire({

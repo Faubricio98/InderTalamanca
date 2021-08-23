@@ -37,7 +37,7 @@
                         <?php 
                             if($item[0] == -1){
                         ?>
-                                <td colspan="10">No hay proyectos registrados</td>
+                                <td colspan="10" class="text-center">No hay proyectos registrados</td>
                         <?php 
                             }else{
                         ?>

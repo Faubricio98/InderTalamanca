@@ -15,12 +15,17 @@ class OficioController{
     }
 
     public function mostrarUpload(){
-        $mydir = 'uploads/';
-        $myfiles['fileList'] = array_diff(scandir($mydir), array('.', '..'));
+        require 'model/OficioModel.php';
+        $oficios = new OficioModel();
+        $data['listaOficio'] = $oficios->listarOficios();
+        $data['fileList'] = $oficios->listarDocumentosOficios();
+        
+        //$mydir = 'uploads/';
+        //$data['fileList'] = array_diff(scandir($mydir), array('.', '..'));
         //print_r($myfiles);
 
         $_SESSION['uploadSession'] = 0;
-        $this->view->show("oficioUploadView.php", $myfiles);
+        $this->view->show("oficioUploadView.php", $data);
     }
 
     public function listar(){
@@ -40,6 +45,9 @@ class OficioController{
     }
 
     public function uploadFile(){
+        require 'model/OficioModel.php';
+        $oficios = new OficioModel();
+
         $target_dir = "uploads/";
         $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
         $_SESSION['uploadSession'] = 0;
@@ -53,15 +61,18 @@ class OficioController{
         // Check if $uploadOk is set to 0 by an error
         if($_SESSION['uploadSession'] == 0){
             if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
-                $_SESSION['uploadSession'] = 1;
+                //guardamos el registro en bd
+                $_SESSION['uploadSession'] = $oficios->guardarNuevoDocumentoOficio($_POST["selectIdOficio"], basename($_FILES["fileToUpload"]["name"]));
             } else {
                 $_SESSION['uploadSession'] = -2;
             } 
         }
 
-        $mydir = 'uploads/';
-        $myfiles['fileList'] = array_diff(scandir($mydir), array('.', '..'));
-        $this->view->show("oficioUploadView.php", $myfiles);
+        //$mydir = 'uploads/';
+        //$data['fileList'] = array_diff(scandir($mydir), array('.', '..'));
+        $data['listaOficio'] = $oficios->listarOficios();
+        $data['fileList'] = $oficios->listarDocumentosOficios();
+        $this->view->show("oficioUploadView.php", $data);
     }
 }
 

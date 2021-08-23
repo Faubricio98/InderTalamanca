@@ -52,6 +52,14 @@ CREATE TABLE `avance_proyecto` (
   CONSTRAINT `avance_proyecto_ibfk_2` FOREIGN KEY (`num_oficio`) REFERENCES `oficio` (`num_oficio`)
 )
 
+CREATE TABLE documento_oficio(
+    id_documento INT AUTO_INCREMENT,
+    num_oficio VARCHAR(50) NOT NULL,
+    nom_documento VARCHAR(200) NOT NULL,
+    PRIMARY KEY (id_documento),
+    FOREIGN KEY (num_oficio) REFERENCES oficio (num_oficio)
+);
+
 -- PROCEDIMIENTOS ALMACENADOS
 CREATE PROCEDURE `sp_create_new_avance_proyecto`(
 	num_p VARCHAR(50),
